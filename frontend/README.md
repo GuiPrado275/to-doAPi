@@ -22,30 +22,5 @@ src/app/
 ├── app.component.ts                             # Root component
 ├── app.config.ts                                # Bootstrap config
 └── main.ts                                      # Entry point
-```
 
-## Instalação
-
-```bash
-npm install
-```
-
-## Executar
-
-```bash
-# Certifique-se que a API NestJS está rodando em localhost:3000
-npm start
 # Acesse: http://localhost:4200
-```
-
-## Funcionalidades
-
-- ✅ Listar todas as tarefas com estatísticas
-- ✅ Criar nova tarefa via modal
-- ✅ Editar tarefa existente
-- ✅ Marcar como concluída
-- ✅ Remover tarefa
-- ✅ Filtrar por status e prioridade
-- ✅ Busca por título em tempo real
-- ✅ Badge de tarefa atrasada
-- ✅ Spinner de loading e estado vazio
