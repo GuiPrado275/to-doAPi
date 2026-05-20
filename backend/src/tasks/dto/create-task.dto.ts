@@ -10,7 +10,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { TaskStatus, TaskPriority } from '../shared/task/task.entity';
 
 export class CreateTaskDto {
-  @ApiProperty({ description: 'Título da tarefa', example: 'Estudar NestJS' })
+  @ApiProperty({ description: 'Título da tarefa', example: 'Estudar' })
   @IsString()
   @IsNotEmpty({ message: 'O título não pode ser vazio' })
   @MaxLength(200, { message: 'Título deve ter no máximo 200 caracteres' })
@@ -18,7 +18,7 @@ export class CreateTaskDto {
 
   @ApiProperty({
     description: 'Descrição detalhada (opcional)',
-    example: 'Estudar DTOs, Services e Controllers',
+    example: 'Estudar',
     required: false,
   })
   @IsOptional()

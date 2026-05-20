@@ -18,7 +18,7 @@ export class FilterTaskDto {
 
   @ApiPropertyOptional({
     description: 'Busca por título (parcial)',
-    example: 'estudar',
+    example: 'Estudar',
   })
   @IsOptional()
   @IsString()
