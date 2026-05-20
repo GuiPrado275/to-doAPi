@@ -1,0 +1,16 @@
+# Dependências de Node (evita subir qualquer node_modules do projeto)
+node_modules/
+**/node_modules/
+
+# Arquivos de Build do Backend e do Frontend
+backend/dist/
+frontend/dist/
+dist/
+
+# Pastas de cache locais do Angular
+.angular/
+**/.angular/
+
+# Arquivos de logs e build info
+*.tsbuildinfo
+*.lognfo
