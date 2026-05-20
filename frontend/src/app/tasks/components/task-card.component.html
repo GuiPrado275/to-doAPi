@@ -1,0 +1,43 @@
+<div class="task-card" [class.is-done]="isDone" [class.is-overdue]="isOverdue">
+  <!-- ── Top row: priority badge + status badge ── -->
+  <div class="card-badges">
+    <span class="badge priority-badge" [class]="'priority-' + task.priority">
+      {{ priorityLabel }}
+    </span>
+    <span class="badge status-badge" [class]="'status-' + task.status">
+      {{ statusLabel }}
+    </span>
+  </div>
+
+  <!-- ── Title ── -->
+  <h3 class="card-title" [class.strikethrough]="isDone">{{ task.title }}</h3>
+
+  <!-- ── Description ── -->
+  @if (task.description) {
+    <p class="card-desc">{{ task.description }}</p>
+  }
+
+  <!-- ── Due date ── -->
+  @if (formattedDueDate) {
+    <div class="due-date" [class.overdue]="isOverdue">
+      <span>📅</span>
+      <span>{{ formattedDueDate }}</span>
+      @if (isOverdue) { <span class="overdue-tag">Atrasada!</span> }
+    </div>
+  }
+
+  <!-- ── Actions ── -->
+  <div class="card-actions">
+    @if (!isDone) {
+      <button class="action-btn done-btn" (click)="onDone.emit(task)" title="Concluir">
+        ✓ Concluir
+      </button>
+    }
+    <button class="action-btn edit-btn" (click)="onEdit.emit(task)" title="Editar">
+      ✎ Editar
+    </button>
+    <button class="action-btn delete-btn" (click)="onDelete.emit(task)" title="Remover">
+      🗑
+    </button>
+  </div>
+</div>

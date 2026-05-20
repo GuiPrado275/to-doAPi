@@ -1,0 +1,131 @@
+<div class="app-shell">
+  <!-- ── Header ───────────────────────────────────────────── -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <span class="brand-icon">✓</span>
+        <h1>Todo App</h1>
+      </div>
+
+      <div class="header-right">
+        <!-- Avatar clicável abre o perfil -->
+        <button class="user-btn" (click)="openProfile()" title="Editar perfil">
+          <div class="user-avatar">{{ authService.user()?.name?.charAt(0)?.toUpperCase() }}</div>
+          <span class="user-name">{{ authService.user()?.name }}</span>
+          <span class="edit-icon">✎</span>
+        </button>
+        <button class="btn btn-outline" (click)="logout()">Sair</button>
+        <button class="btn btn-primary" (click)="openCreateForm()">+ Nova Tarefa</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- ── Stats ─────────────────────────────────────────────── -->
+    <div class="stats-row">
+      <div class="stat-card total">
+        <span class="stat-number">{{ stats().total }}</span>
+        <span class="stat-label">Total</span>
+      </div>
+      <div class="stat-card pending">
+        <span class="stat-number">{{ stats().pending }}</span>
+        <span class="stat-label">Pendentes</span>
+      </div>
+      <div class="stat-card in-progress">
+        <span class="stat-number">{{ stats().inProgress }}</span>
+        <span class="stat-label">Em Andamento</span>
+      </div>
+      <div class="stat-card done">
+        <span class="stat-number">{{ stats().done }}</span>
+        <span class="stat-label">Concluídas</span>
+      </div>
+    </div>
+
+    <!-- ── Filters ────────────────────────────────────────────── -->
+    <div class="filters-bar">
+      <div class="search-wrap">
+        <input
+          class="input search-input"
+          type="text"
+          placeholder="Buscar tarefas..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()"
+          (input)="onSearch()"
+        />
+        <span class="search-icon">🔍</span>
+      </div>
+      <select class="input select" (change)="onFilterStatus($any($event.target).value)">
+        <option value="">Todos os status</option>
+        <option value="pending">Pendente</option>
+        <option value="in_progress">Em Andamento</option>
+        <option value="done">Concluída</option>
+      </select>
+      <select class="input select" (change)="onFilterPriority($any($event.target).value)">
+        <option value="">Todas as prioridades</option>
+        <option value="high">Alta</option>
+        <option value="medium">Média</option>
+        <option value="low">Baixa</option>
+      </select>
+    </div>
+
+    <!-- ── Error ──────────────────────────────────────────────── -->
+    @if (error()) {
+      <div class="alert alert-error">
+        <span>⚠️ {{ error() }}</span>
+        <button class="btn-close" (click)="clearError()">×</button>
+      </div>
+    }
+
+    <!-- ── Loading ────────────────────────────────────────────── -->
+    @if (loading()) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Carregando tarefas...</p>
+      </div>
+    }
+
+    <!-- ── Empty state ────────────────────────────────────────── -->
+    @if (!loading() && tasks().length === 0 && !error()) {
+      <div class="empty-state">
+        <span class="empty-icon">📋</span>
+        <h3>Nenhuma tarefa encontrada</h3>
+        <p>Clique em "Nova Tarefa" para começar!</p>
+      </div>
+    }
+
+    <!-- ── Task cards ─────────────────────────────────────────── -->
+    @if (!loading() && tasks().length > 0) {
+      <div class="tasks-count">{{ filteredCount() }} tarefa(s)</div>
+      <div class="task-grid">
+        @for (task of tasks(); track task.id) {
+          <app-task-card
+            [task]="task"
+            (onEdit)="openEditForm($event)"
+            (onDone)="onMarkDone($event)"
+            (onDelete)="onDelete($event)"
+          />
+        }
+      </div>
+    }
+  </main>
+
+  <!-- ── Modal: nova/editar tarefa ─────────────────────────────── -->
+  @if (showForm()) {
+    <div class="modal-backdrop" (click)="closeForm()">
+      <div class="modal-panel" (click)="$event.stopPropagation()">
+        <app-task-form
+          [task]="editingTask()"
+          (saved)="onTaskSaved()"
+          (cancelled)="closeForm()"
+        />
+      </div>
+    </div>
+  }
+
+  <!-- ── Modal: perfil do usuário ──────────────────────────────── -->
+  @if (showProfile()) {
+    <app-user-profile
+      (closed)="closeProfile()"
+    />
+  }
+</div>

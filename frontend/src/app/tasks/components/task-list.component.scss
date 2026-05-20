@@ -1,0 +1,335 @@
+.app-shell {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+// ── Header ──────────────────────────────────────────────────────
+.app-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+
+  .header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .user-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+
+      @media (max-width: 520px) { display: none; }
+    }
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: #6366f1;
+      color: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0;
+    }
+  }
+}
+
+// ── Main ────────────────────────────────────────────────────────
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+// ── Stats ───────────────────────────────────────────────────────
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 4px solid transparent;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+
+  &.total     { border-color: #6366f1; }
+  &.pending   { border-color: #f59e0b; }
+  &.in-progress { border-color: #3b82f6; }
+  &.done      { border-color: #10b981; }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+// ── Filters ─────────────────────────────────────────────────────
+.filters-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      padding-left: 2.25rem;
+      width: 100%;
+    }
+  }
+
+  .select {
+    min-width: 160px;
+  }
+}
+
+.input {
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 0.875rem;
+  font-size: 0.9rem;
+  background: #fff;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+}
+
+// ── Buttons ─────────────────────────────────────────────────────
+.btn {
+  height: 40px;
+  padding: 0 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, transform 0.1s;
+
+  &:active { transform: scale(0.97); }
+
+  &.btn-outline {
+    background: transparent;
+    color: #6b7280;
+    border: 1.5px solid #d1d5db;
+
+    &:hover { background: #f3f4f6; }
+  }
+
+  &.btn-primary {
+    background: #6366f1;
+    color: #fff;
+
+    &:hover { background: #4f46e5; }
+  }
+}
+
+// ── Alert ───────────────────────────────────────────────────────
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+
+  &.alert-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+  }
+
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    color: inherit;
+    line-height: 1;
+    padding: 0 0.25rem;
+  }
+}
+
+// ── Loading ─────────────────────────────────────────────────────
+.loading-state {
+  text-align: center;
+  padding: 4rem 0;
+  color: #6b7280;
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 1rem;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ── Empty state ─────────────────────────────────────────────────
+.empty-state {
+  text-align: center;
+  padding: 5rem 0;
+  color: #9ca3af;
+
+  .empty-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+  h3 { font-size: 1.2rem; color: #374151; margin: 0 0 0.5rem; }
+  p  { font-size: 0.9rem; margin: 0; }
+}
+
+// ── Tasks count ─────────────────────────────────────────────────
+.tasks-count {
+  font-size: 0.82rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+// ── Task grid ───────────────────────────────────────────────────
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+// ── Modal ───────────────────────────────────────────────────────
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.modal-panel {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* ── User profile button ─────────────────────────────────── */
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(255,255,255,0.12);
+
+    .edit-icon { opacity: 1; }
+  }
+}
+
+.edit-icon {
+  font-size: 0.85rem;
+  opacity: 0;
+  color: rgba(255,255,255,0.7);
+  transition: opacity 0.2s;
+}

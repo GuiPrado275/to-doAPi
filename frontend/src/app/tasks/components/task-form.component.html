@@ -1,0 +1,87 @@
+<div class="form-card">
+  <!-- Header -->
+  <div class="form-header">
+    <h2>{{ isEditing ? '✎ Editar Tarefa' : '+ Nova Tarefa' }}</h2>
+    <button class="btn-icon" (click)="cancelled.emit()" title="Fechar">×</button>
+  </div>
+
+  <!-- Error -->
+  @if (error()) {
+    <div class="form-error">⚠️ {{ error() }}</div>
+  }
+
+  <!-- Fields -->
+  <div class="form-body">
+    <!-- Title -->
+    <div class="field">
+      <label class="label" for="title">Título <span class="required">*</span></label>
+      <input
+        id="title"
+        class="input"
+        type="text"
+        placeholder="Ex: Estudar NestJS"
+        [(ngModel)]="title"
+        maxlength="200"
+        autofocus
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="field">
+      <label class="label" for="desc">Descrição</label>
+      <textarea
+        id="desc"
+        class="input textarea"
+        placeholder="Detalhes opcionais..."
+        [(ngModel)]="description"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <!-- Status + Priority -->
+    <div class="field-row">
+      <div class="field">
+        <label class="label" for="status">Status</label>
+        <select id="status" class="input select" [(ngModel)]="status">
+          <option value="pending">Pendente</option>
+          <option value="in_progress">Em Andamento</option>
+          <option value="done">Concluída</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label" for="priority">Prioridade</label>
+        <select id="priority" class="input select" [(ngModel)]="priority">
+          <option value="low">Baixa</option>
+          <option value="medium">Média</option>
+          <option value="high">Alta</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Due date -->
+    <div class="field">
+      <label class="label" for="dueDate">Data de Vencimento</label>
+      <input
+        id="dueDate"
+        class="input"
+        type="date"
+        [(ngModel)]="dueDate"
+      />
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="form-footer">
+    <button class="btn btn-ghost" (click)="cancelled.emit()" [disabled]="loading()">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="submit()" [disabled]="loading()">
+      @if (loading()) {
+        <span class="btn-spinner"></span> Salvando...
+      } @else {
+        {{ isEditing ? 'Salvar Alterações' : 'Criar Tarefa' }}
+      }
+    </button>
+  </div>
+</div>

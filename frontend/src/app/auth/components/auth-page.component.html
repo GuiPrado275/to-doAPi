@@ -1,0 +1,77 @@
+<div class="auth-shell">
+  <div class="auth-card">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-icon">✓</div>
+      <h1>Todo App</h1>
+      <p class="brand-sub">{{ isLogin ? 'Acesse sua conta' : 'Crie sua conta grátis' }}</p>
+    </div>
+
+    <!-- Error -->
+    @if (error()) {
+      <div class="alert-error">⚠️ {{ error() }}</div>
+    }
+
+    <!-- Form -->
+    <div class="form">
+
+      <!-- Name (only register) -->
+      @if (!isLogin) {
+        <div class="field">
+          <label class="label">Nome completo</label>
+          <input
+            class="input"
+            type="text"
+            placeholder="João Silva"
+            [(ngModel)]="name"
+            (keyup.enter)="submit()"
+          />
+        </div>
+      }
+
+      <!-- Email -->
+      <div class="field">
+        <label class="label">E-mail</label>
+        <input
+          class="input"
+          type="email"
+          placeholder="seu@email.com"
+          [(ngModel)]="email"
+          (keyup.enter)="submit()"
+          autocomplete="email"
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label class="label">Senha</label>
+        <input
+          class="input"
+          type="password"
+          [placeholder]="isLogin ? '••••••' : 'Mínimo 6 caracteres'"
+          [(ngModel)]="password"
+          (keyup.enter)="submit()"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <!-- Submit -->
+      <button class="btn-submit" (click)="submit()" [disabled]="loading()">
+        @if (loading()) {
+          <span class="spinner"></span>
+        }
+        {{ isLogin ? 'Entrar' : 'Criar conta' }}
+      </button>
+    </div>
+
+    <!-- Toggle mode -->
+    <div class="toggle-mode">
+      {{ isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?' }}
+      <button class="link-btn" (click)="toggleMode()">
+        {{ isLogin ? 'Cadastre-se' : 'Faça login' }}
+      </button>
+    </div>
+
+  </div>
+</div>
