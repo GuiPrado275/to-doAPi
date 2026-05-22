@@ -61,3 +61,6 @@ export class AuthService {
     }
   }
 }
+//É o serviço de autenticação — faz login e registro chamando o backend,
+// salva o token e os dados do usuário no localStorage pra persistir mesmo após fechar o navegador,
+// expõe o usuário atual como signal reativo pra toda a aplicação usar, e limpa tudo isso no logout.

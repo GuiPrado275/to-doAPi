@@ -217,3 +217,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 }
+//Modal de perfil do usuário — permite editar nome, email e senha enviando apenas os campos que foram alterados,
+//exibe sucesso ou erro após salvar, e tem uma "zona de perigo" que exige confirmação antes de excluir
+// a conta permanentemente, deslogando e redirecionando pro login em seguida.

@@ -88,3 +88,6 @@ export class TaskFormComponent implements OnInit {
     });
   }
 }
+//É o componente do formulário — serve tanto pra criar quanto pra editar uma task,
+// pré-preenche os campos se estiver no modo edição, valida se o título foi preenchido antes de enviar,
+// trava o botão durante o salvamento, e avisa o pai se salvou ou foi cancelado.

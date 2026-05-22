@@ -68,3 +68,5 @@ export class AuthPageComponent {
     });
   }
 }
+//Valida os campos antes de enviar, chama o backend pra logar ou registrar dependendo do modo,
+//redireciona pra tela principal, se der certo exibe o erro se der errado e limpa os campos ao alternar entre os modos.

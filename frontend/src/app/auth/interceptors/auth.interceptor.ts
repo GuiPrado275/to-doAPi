@@ -15,3 +15,4 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req);
 };
+//Pega o token e o anexa automaticamente no cabeçalho de toda requisição antes de ela sair

@@ -48,3 +48,6 @@ export class TaskCardComponent {
     return new Date(this.task.dueDate + 'T00:00:00').toLocaleDateString('pt-BR');
   }
 }
+//é o componente que representa uma task individual — recebe os dados da task do pai,
+// calcula se ela está concluída ou atrasada, traduz os valores crus do backend pra português,
+// e avisa o pai quando o usuário clica em editar, concluir ou deletar.

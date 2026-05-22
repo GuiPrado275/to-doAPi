@@ -96,3 +96,5 @@ export class TaskListComponent implements OnInit {
 
   clearError(): void { this.error.set(null); }
 }
+//É o componente que conecta o HTML ao backend
+// — gerencia o estado da tela, chama os serviços e reage às ações do usuário.
